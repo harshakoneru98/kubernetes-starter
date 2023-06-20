@@ -73,4 +73,27 @@ There can be configurations such as usernames and passwords for the database. Pl
 </p>
 
 **7. Volumes**
-If the database container or the pod is restarted, the data would be lost, which is problematic. To overcome this issue, Kubernetes offers a component called Volumes. The way it works is by attaching a physical storage device, such as a hard drive, to our pod. This storage can be located either on the local machine (on the same server) or on remote storage (outside the Kubernetes cluster), such as cloud or on-premise storage. The use of external storage is necessary because Kubernetes does not manage data persistence.
+
+If the database container or the pod is restarted, the data will be lost, which is problematic. To overcome this issue, Kubernetes offers a component called Volumes. The way it works is by attaching a physical storage device, such as a hard drive, to our pod. This storage can be located either on the local machine (on the same server) or on remote storage (outside the Kubernetes cluster), such as cloud or on-premise storage. The use of external storage is necessary because Kubernetes does not manage data persistence.
+
+<p align="center">
+  <img src="https://github.com/harshakoneru98/kubernetes-starter/blob/main/images/5.%20Volumes.png" alt="Volumes" width="400" height="500">
+</p>
+
+**8. Deployment**
+
+Now everything is running perfectly, and users can access our application through a browser. However, with this setup, what happens if my application pod dies or I have to restart it due to building a new container image? Essentially, I would experience downtime. To overcome this, we need to replicate everything on multiple servers. Therefore, we have another node where a replica of our application will run, and it will also be connected to the same Service, which has a permanent IP and acts as a load balancer.
+
+Instead of replicating the application pod multiple times, we define a blueprint for the my-app pod and specify how many replicas of that pod we would like to run. This blueprint or specification is called a deployment, which is another Kubernetes component. In practice, we will not be working directly with pods; we will be creating deployments because they allow us to specify the desired number of replicas and also provide scalability options.
+
+As we mentioned, the pod is an abstraction layer on top of the container. Similarly, a deployment is another abstraction layer on top of the pod, making it more convenient to interact with pods and replicate them.
+
+**9. StatefulSet**
+
+What if our database pod dies? Our application would also become inaccessible. Therefore, we need a replica of the database as well. However, we cannot replicate the database using a deployment because the database has a state which refers to its data. This means that if we have replicas of the database, they would all need to access the same shared data storage. We require a mechanism to manage which pods are currently writing to or reading from that storage in order to avoid data inconsistencies. This mechanism, along with the replication feature, is provided by another Kubernetes component called StatefulSet. StatefulSet is primarily used for database applications.
+
+<p align="center">
+  <img src="https://github.com/harshakoneru98/kubernetes-starter/blob/main/images/6.%20Deployement%20and%20StatefulSet.png" alt="Deployment and StatefulSet" width="600" height="500">
+</p>
+
+Deploying database applications using StatefulSet in a Kubernetes Cluster is not an easy task. Hence, it is a common practice to host database applications outside the Kubernetes cluster. Inside the Kubernetes cluster, we can have deployments or stateless applications that can replicate and scale without any issues. These applications can then communicate with an external database. 
