@@ -71,3 +71,6 @@ There can be configurations such as usernames and passwords for the database. Pl
 <p align="center">
   <img src="https://github.com/harshakoneru98/kubernetes-starter/blob/main/images/4.%20ConfigMap%20and%20Secret.png" alt="ConfigMap and Secret" width="600" height="500">
 </p>
+
+**7. Volumes**
+If the database container or the pod is restarted, the data would be lost, which is problematic. To overcome this issue, Kubernetes offers a component called Volumes. The way it works is by attaching a physical storage device, such as a hard drive, to our pod. This storage can be located either on the local machine (on the same server) or on remote storage (outside the Kubernetes cluster), such as cloud or on-premise storage. The use of external storage is necessary because Kubernetes does not manage data persistence.
