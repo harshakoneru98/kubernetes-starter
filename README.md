@@ -97,3 +97,23 @@ What if our database pod dies? Our application would also become inaccessible. T
 </p>
 
 Deploying database applications using StatefulSet in a Kubernetes Cluster is not an easy task. Hence, it is a common practice to host database applications outside the Kubernetes cluster. Inside the Kubernetes cluster, we can have deployments or stateless applications that can replicate and scale without any issues. These applications can then communicate with an external database. 
+
+### Kubernetes Architecture
+There are two types of nodes in Kubernetes: the Master Node and the Worker Node.
+
+#### Master Node
+The Master Node in Kubernetes is responsible for managing and coordinating cluster operations. It includes various components for this purpose:
+- **API Server:** The API Server in Kubernetes serves as the front-end for the control plane, exposing the Kubernetes API. It validates and processes incoming requests from clients, such as the command-line interface and web UI, to interact with the cluster. The API Server then updates the cluster's desired state based on these requests.
+- **Scheduler:** The Scheduler in Kubernetes decides where and how to run pods, considering factors like resource requirements, constraints, and policies. It analyzes the resources available on worker nodes and intelligently determines the best placement for pods. It takes into account factors such as resource availability, affinity/anti-affinity rules, and custom scheduling requirements to assign pods to suitable nodes.
+- **Controller Manager:** The Controller Manager in Kubernetes runs multiple controllers to handle different aspects of the cluster's desired state. These controllers continuously monitor the cluster's current state and compare it with the desired state specified in the configuration. If any discrepancies are found, the controller takes necessary actions to align the state accordingly.
+- **etcd:** etcd is a distributed key-value store used as the cluster's backing store for storing the Kubernetes API objects, cluster state, and configuration data. It provides a reliable and consistent data store for the entire cluster. The API Server and other components read from and write to etcd to maintain the cluster's state and ensure consistency.
+
+#### Worker Node
+Worker Nodes, also known as minion nodes or simply nodes, form the worker layer of the Kubernetes cluster. They are responsible for running the actual containerized workloads (pods). Each worker node includes the following components:
+- **Kubelet:** Kubelet is the primary agent that runs on each worker node and interacts with the control plane. It receives pod definitions from the API Server, ensures that the desired state of pods is maintained on the node, and reports back the current state. Kubelet works closely with the container runtime to manage the containers' lifecycle, including starting, stopping, and monitoring them.
+- **Container Runtime:** The Container Runtime is the software responsible for running containers. Kubernetes supports multiple container runtimes, with Docker being the most commonly used. Other runtimes include containerd, CRI-O, and rkt. The Container Runtime pulls container images from the registry, starts and stops containers, and manages their namespaces, networking, and storage.
+- **Kube-proxy:** Kube-proxy is responsible for network proxying and service discovery within the cluster. It maintains network rules and enables communication between services running on different nodes. Kube-proxy implements the Kubernetes Service concept by managing virtual IP addresses and load balancing across pods in a service.
+
+Each worker node typically runs multiple pods, and the Kubelet on each node ensures that the desired state of those pods is met by interacting with the Master Node and the container runtime.
+
+The collaboration between the Master Node and Worker Nodes allows Kubernetes to efficiently manage the cluster's resources, orchestrate container deployments, handle scaling and resilience, and maintain the desired state of the system.
