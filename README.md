@@ -117,3 +117,16 @@ Worker Nodes, also known as minion nodes or simply nodes, form the worker layer 
 Each worker node typically runs multiple pods, and the Kubelet on each node ensures that the desired state of those pods is met by interacting with the Master Node and the container runtime.
 
 The collaboration between the Master Node and Worker Nodes allows Kubernetes to efficiently manage the cluster's resources, orchestrate container deployments, handle scaling and resilience, and maintain the desired state of the system.
+
+### Local Setup using Minikube and kubectl
+In a production cluster, we typically have multiple Master and Worker Nodes, which are separate machines representing each node. However, when we want to quickly test or try something on our local environment, setting up a full production-like cluster can be challenging or even impossible due to resource limitations. To address this scenario, there is an open-source tool called Minikube.
+
+#### What is Minikube?
+Minikube is a tool that enables you to run a single-node Kubernetes cluster locally on your computer using Virtual Box or some other hypervisor. It set up a lightweight cluster that includes the necessary components of Kubernetes, such as the master node, worker node, and other supporting services. It provides a convenient way to learn, develop, and debug applications for Kubernetes without the need for a full-scale production cluster.
+
+After setting up a cluster, we need some way to interact with a cluster. This is where kubectl comes into play.
+
+#### What is kubectl?
+kubectl is the command-line interface (CLI) tool used to interact with Kubernetes clusters. It is a powerful tool that allows users to manage and control various aspects of the Kubernetes cluster and its resources. With kubectl, you can perform actions such as deploying and managing applications, inspecting and modifying cluster resources, scaling deployments, viewing logs, and executing commands within containers.
+
+kubectl communicates with the Kubernetes API server, which acts as the control plane for the cluster. It sends requests to the API server to perform operations on the cluster and receives responses with the results. kubectl can interact with any type of cluster, i.e. Minikube cluster or Cloud cluster.
