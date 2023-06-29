@@ -122,7 +122,7 @@ The collaboration between the Master Node and Worker Nodes allows Kubernetes to 
 In a production cluster, we typically have multiple Master and Worker Nodes, which are separate machines representing each node. However, when we want to quickly test or try something on our local environment, setting up a full production-like cluster can be challenging or even impossible due to resource limitations. To address this scenario, there is an open-source tool called Minikube.
 
 #### What is Minikube?
-Minikube is a tool that enables you to run a single-node Kubernetes cluster locally on your computer using Virtual Box or some other hypervisor. It set up a lightweight cluster that includes the necessary components of Kubernetes, such as the master node, worker node, and other supporting services. It provides a convenient way to learn, develop, and debug applications for Kubernetes without the need for a full-scale production cluster.
+Minikube is a tool that enables you to run a single-node Kubernetes cluster locally on your computer using Virtual Box or some other hypervisor like qemu, hyperkit etc. It set up a lightweight cluster that includes the necessary components of Kubernetes, such as the master node, worker node, and other supporting services. It provides a convenient way to learn, develop, and debug applications for Kubernetes without the need for a full-scale production cluster.
 
 After setting up a cluster, we need some way to interact with a cluster. This is where kubectl comes into play.
 
