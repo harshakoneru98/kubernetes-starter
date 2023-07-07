@@ -130,3 +130,5 @@ After setting up a cluster, we need some way to interact with a cluster. This is
 kubectl is the command-line interface (CLI) tool used to interact with Kubernetes clusters. It is a powerful tool that allows users to manage and control various aspects of the Kubernetes cluster and its resources. With kubectl, you can perform actions such as deploying and managing applications, inspecting and modifying cluster resources, scaling deployments, viewing logs, and executing commands within containers.
 
 kubectl communicates with the Kubernetes API server, which acts as the control plane for the cluster. It sends requests to the API server to perform operations on the cluster and receives responses with the results. kubectl can interact with any type of cluster, i.e. Minikube cluster or Cloud cluster.
+
+**Basic kubectl Commands -** https://github.com/harshakoneru98/kubernetes-starter/blob/main/Commands.md
